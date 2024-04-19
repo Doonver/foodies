@@ -4,21 +4,15 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  <h1 style={{ color: 'white' }}>Foodies</h1>
+  <div style={{ height: "10%", width: "100%", backgroundColor: "black", display: "flex" }}>
+    <div style={{ flex: 1, backgroundColor: "gray", textAlign: "center", lineHeight: "40px", borderRight: "1px solid #ccc" }}>Item 1</div>
+    <div style={{ flex: 1, backgroundColor: "gray", textAlign: "center", lineHeight: "40px", borderRight: "1px solid #ccc" }}>Item 2</div>
+    <div style={{ flex: 1, backgroundColor: "gray", textAlign: "center", lineHeight: "40px", borderRight: "1px solid #ccc" }}>Item 3</div>
+    <div style={{ flex: 1, backgroundColor: "gray", textAlign: "center", lineHeight: "40px" }}>Item 4</div>
+  </div>
+</div>
+
   );
 }
 
