@@ -5,22 +5,15 @@ import { useAtom } from 'jotai';
 import { currUserAtom } from './atoms';
 
 import LoginScreen from './screens/LoginScreen/LoginScreen.js';
-import ProfileScreen from './screens/ProfileScreen/ProfileScreen.js'
+import ProfileScreen from './screens/ProfileScreen/ProfileScreen.js';
+import OCRScreen from './screens/OCRScreen/OCRScreen.js';
 
 function App() {
-  const [user, setUser] = useAtom(currUserAtom);
+  //const [user, setUser] = useAtom(currUserAtom);
 
   return (
     <div>
-      {true ? (
-        <div className="App">
-          <ProfileScreen/>
-        </div>
-      ) : (
-        <div className="App">
-          <LoginScreen/>
-        </div>
-      )}
+      <OCRScreen/>
     </div>
   );
 }
