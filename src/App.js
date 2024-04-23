@@ -12,7 +12,7 @@ function App() {
 
   return (
     <div>
-      {false ? (
+      {true ? (
         <div className="App">
           <ProfileScreen/>
         </div>
