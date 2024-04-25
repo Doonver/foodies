@@ -7,15 +7,16 @@ import { currUserAtom } from './atoms';
 import LoginScreen from './screens/LoginScreen/LoginScreen.js';
 import ProfileScreen from './screens/ProfileScreen/ProfileScreen.js'
 import HomeScreen from './screens/HomeScreen/HomeScreen.js';
+import PantryScreen from './screens/PantryScreen/PantryScreen.js';
 
 function App() {
   const [user, setUser] = useAtom(currUserAtom);
   setUser('Denver Nguyen')
   return (
     <div>
-      {user ? (
+      {true ? (
         <div className="App">
-          <HomeScreen/>
+          <PantryScreen/>
         </div>
       ) : (
         <div className="App">
