@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import styles from './PantryScreenStyles'; // Import PantryScreenStyles
+import NavBar from '../../components/NavBar/NavBar';
+import { useAtom } from 'jotai';
+import { pantryItemsAtom } from '../../atoms';
 
 const PantryScreen = () => {
-    // Example pantry items
-    const initialPantryItems = ['Item 1', 'Item 2', 'Item 3'];
     // State variable to store pantry items
-    const [pantryItems, setPantryItems] = useState(initialPantryItems);
-
+    const [pantryItems, setPantryItems] = useAtom(pantryItemsAtom);
     // Function to handle item removal
     const handleRemoveItem = (index) => {
         // Create a new array without the item at the specified index
@@ -29,6 +29,7 @@ const PantryScreen = () => {
                     </Box>
                 ))}
             </Box>
+            <NavBar/>
         </Box>
     );
 }

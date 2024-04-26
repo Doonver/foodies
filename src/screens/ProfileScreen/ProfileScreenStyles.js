@@ -3,17 +3,16 @@ const styles = {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
         backgroundColor: '#D9EDBF', // Light green background color
         width: '100%',
         height: '100%',
-        padding: '20px' // Add some padding
     },
     profileBox: {
         backgroundColor: '#90D26D', // Light green color for profile box
         padding: '20px', // Add padding inside the profile box
         borderRadius: '12px', // Add rounded corners
-        marginBottom: '20px', // Add space below the profile box
+        margin: '10px', // Add space below the profile box
         width: '75%' ,// Set width to cover 1/4th of the page
         height:'200px',
         display: 'flex',
@@ -41,7 +40,7 @@ const styles = {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-start', // Left justify horizontally
-        width: '100%' // Ensure full width
+        width: '90%' // Ensure full width
     },
     detailText: {
         marginBottom: '10px',

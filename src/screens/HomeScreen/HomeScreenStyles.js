@@ -5,7 +5,8 @@ const styles = {
     alignItems: 'center',
     flexDirection: 'column',
     width: '100%',
-    height: '100%',
+    maxHeight: '90%',
+    overflow: 'auto',
     
   },
   heading: {
@@ -26,6 +27,15 @@ const styles = {
     width: '90%',
     margin: '10px'
   },
+  recipeList: {
+    maxHeight: 700, 
+    overflow: 'auto',
+  },
+  list: {
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'column',
+  }
 };
 
 export default styles;

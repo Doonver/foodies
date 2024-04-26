@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Typography, TextField, Checkbox } from '@mui/material';
 import styles from './ProfileScreenStyles.js';
+import NavBar from '../../components/NavBar/NavBar.js';
 
 const ProfileScreen = () => {
     return (
@@ -22,6 +23,7 @@ const ProfileScreen = () => {
                     <label style={styles.checkboxLabel}><Checkbox name="dairyFree" /> Dairy-free</label>
                 </Box>
             </Box>
+            <NavBar/>
         </Box>
     );
 }

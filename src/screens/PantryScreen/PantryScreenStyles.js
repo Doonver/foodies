@@ -6,8 +6,9 @@ const styles = {
         backgroundColor: '#D9EDBF', // Light green background color
         width: '100%',
         height: '100%',
-        padding: '20px', // Add some padding
-        fontFamily: 'Roboto, sans-serif' // Change font family for the entire page
+        paddingTop: '20px', // Add some padding
+        fontFamily: 'Roboto, sans-serif', // Change font family for the entire page
+        justifyContent: 'space-between',
     },
     pageTitle: {
         marginBottom: '20px',
@@ -20,7 +21,7 @@ const styles = {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center', // Center items horizontally
-        width: '100%', // Set width to 100% to stretch horizontally
+        width: '90%', // Set width to 100% to stretch horizontally
         marginTop: '20px' // Add space between pantry title and item boxes
     },
     itemBox: {
