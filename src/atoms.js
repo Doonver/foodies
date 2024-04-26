@@ -1,6 +1,6 @@
 import { atom } from 'jotai';
 export const currUserAtom = atom('');
-export const icrAtom = atom(0);
+export const icrAtom = atom(10);
 export const currPageAtom = atom('Home');
 export const pantryItemsAtom = atom(['apples', 'flour', 'sugar']);
 export const recipesAtom = atom([{
