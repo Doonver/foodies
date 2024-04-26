@@ -13,7 +13,6 @@ function App() {
   const [user, setUser] = useAtom(currUserAtom);
   const [page, setPage] = useAtom(currPageAtom);
 
-  setUser('Denver Nguyen')
   return (
     <div>
       {user ? (
