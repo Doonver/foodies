@@ -20,10 +20,10 @@ const OCRScreen = () => {
 
     // Run and wait the result
     ocrSpaceApi.parseImageFromUrl(imageFilePath, options)
-    .then(function (parsedResult) {
+    .then(function(parsedResult) {
         console.log('parsedText: \n', parsedResult.parsedText);
         console.log('ocrParsedResult: \n', parsedResult.ocrParsedResult);
-    }).catch(function (err) {
+    }).catch(function(err) {
         console.log('ERROR:', err);
     });
 }

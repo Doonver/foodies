@@ -18,7 +18,7 @@ const HomeScreen = () => {
 
     // Define the URL with your API key
     const url = "https://api.spoonacular.com/recipes/complexSearch";
-    const apiKey = "9e08f11e28f24e78b115d9f4f4adfe78";
+    const apiKey = "b78f11225f014087a32f54070b440e30v";
 
     const [searchQuery, setSearchQuery] = useState('');
     const handleSearchChange = (input) => {
