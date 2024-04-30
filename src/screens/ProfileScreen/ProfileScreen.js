@@ -1,29 +1,110 @@
-import React from 'react';
-import { Box, Typography, TextField, Checkbox } from '@mui/material';
+import React, { useState } from 'react';
+import { Box, Typography, TextField, Chip, Grid } from '@mui/material';
 import styles from './ProfileScreenStyles.js';
 import NavBar from '../../components/NavBar/NavBar.js';
 
 const ProfileScreen = () => {
+    // Define initial dietary restrictions
+    const [dietaryRestrictions, setDietaryRestrictions] = useState(['Vegetarian', 'Vegan', 'Gluten-free', 'Dairy-free']);
+
+    // Define initial allergens
+    const [allergens, setAllergens] = useState(['Nut', 'Seafood', 'Gluten']);
+
+    // Function to handle chip deletion for dietary restrictions
+    const handleDelete = (restrictionToDelete) => {
+        const newRestrictions = dietaryRestrictions.filter(restriction => restriction !== restrictionToDelete);
+        setDietaryRestrictions(newRestrictions);
+    };
+
+    // Function to handle chip deletion for allergens
+    const handleAllergenDelete = (allergenToDelete) => {
+        const newAllergens = allergens.filter(allergen => allergen !== allergenToDelete);
+        setAllergens(newAllergens);
+    };
+
+    // Function to handle chip click for dietary restrictions
+    const handleClick = (restrictionClicked) => {
+        console.log(`Clicked on ${restrictionClicked}`);
+        // Implement logic for handling chip click if needed
+    };
+
+    // Function to handle chip click for allergens
+    const handleAllergenClick = (allergenClicked) => {
+        console.log(`Clicked on ${allergenClicked}`);
+        // Implement logic for handling chip click if needed
+    };
+
     return (
         <Box sx={styles.profilePage}>
             <Box sx={styles.profileBox}>
-                <img src={require('./1000_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg')} alt="Profile Picture" style={styles.profileImg} />
-                <Typography variant="h5" sx={styles.profileName}>John Doe</Typography>
+                <img src={require('./1000_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg')} alt="" style={styles.profileImg} />
             </Box>
+            <Typography variant="h5" sx={styles.profileName}>John Doe</Typography>
             <Box sx={styles.profileDetails}>
-                <Typography sx={styles.detailText}><strong>A1C Level:</strong></Typography>
-                <TextField sx={styles.textField} label="A1C Level" />
-                <Typography sx={styles.detailText}><strong>ICR Value:</strong></Typography>
-                <TextField sx={styles.textField} label="ICR Value" />
+                <Grid container spacing={2}>
+                    <Grid item xs={6}>
+                        <Box sx={{ marginBottom: '10px' }}>
+                            <Typography sx={styles.detailText}><strong>Sex</strong></Typography>
+                            <TextField sx={{ ...styles.textField, width: '100%', maxWidth: '100px' }} />
+                        </Box>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Box sx={{ marginBottom: '10px' }}>
+                            <Typography sx={styles.detailText}><strong>Age</strong></Typography>
+                            <TextField sx={{ ...styles.textField, width: '100%', maxWidth: '100px' }} />
+                        </Box>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Box sx={{ marginBottom: '10px' }}>
+                            <Typography sx={styles.detailText}><strong>Weight</strong></Typography>
+                            <TextField sx={{ ...styles.textField, width: '100%', maxWidth: '100px' }} />
+                        </Box>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Box sx={{ marginBottom: '10px' }}>
+                            <Typography sx={styles.detailText}><strong>Height</strong></Typography>
+                            <TextField sx={{ ...styles.textField, width: '100%', maxWidth: '100px' }} />
+                        </Box>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Box sx={{ marginBottom: '10px' }}>
+                            <Typography sx={styles.detailText}><strong>A1C Level</strong></Typography>
+                            <TextField sx={{ ...styles.textField, width: '100%', maxWidth: '100px' }} />
+                        </Box>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Box sx={{ marginBottom: '10px' }}>
+                            <Typography sx={styles.detailText}><strong>Insulin to Carb Ratio</strong></Typography>
+                            <TextField sx={{ ...styles.textField, width: '100%', maxWidth: '100px' }} />
+                        </Box>
+                    </Grid>
+                </Grid>
                 <Typography sx={styles.detailText}><strong>Dietary Restrictions:</strong></Typography>
-                <Box sx={styles.dietaryRestrictions}>
-                    <label style={styles.checkboxLabel}><Checkbox name="vegetarian" /> Vegetarian</label>
-                    <label style={styles.checkboxLabel}><Checkbox name="vegan" /> Vegan</label>
-                    <label style={styles.checkboxLabel}><Checkbox name="glutenFree" /> Gluten-free</label>
-                    <label style={styles.checkboxLabel}><Checkbox name="dairyFree" /> Dairy-free</label>
+                <Box>
+                    {dietaryRestrictions.map((restriction, index) => (
+                        <Chip
+                            key={index}
+                            label={restriction}
+                            onDelete={() => handleDelete(restriction)}
+                            onClick={() => handleClick(restriction)}
+                            sx={{ marginRight: '5px', marginBottom: '5px' }}
+                        />
+                    ))}
+                </Box>
+                <Typography sx={styles.detailText}><strong>Allergens:</strong></Typography>
+                <Box>
+                    {allergens.map((allergen, index) => (
+                        <Chip
+                            key={index}
+                            label={allergen}
+                            onDelete={() => handleAllergenDelete(allergen)}
+                            onClick={() => handleAllergenClick(allergen)}
+                            sx={{ marginRight: '5px', marginBottom: '5px' }}
+                        />
+                    ))}
                 </Box>
             </Box>
-            <NavBar/>
+            <NavBar />
         </Box>
     );
 }
