@@ -12,7 +12,7 @@ import PantryScreen from './screens/PantryScreen/PantryScreen.js';
 function App() {
   const [user, setUser] = useAtom(currUserAtom);
   const [page, setPage] = useAtom(currPageAtom);
-
+  setUser("Denver")
   return (
     <div>
       {user ? (
@@ -20,6 +20,7 @@ function App() {
           {page === "Pantry" && <PantryScreen/>}
           {page === "Home" && <HomeScreen/>}
           {page === "Profile" && <ProfileScreen/>}
+          {/* {page === "Search" && <SearchScreen/>} */}
         </div>
       ) : (
         <div className="App">

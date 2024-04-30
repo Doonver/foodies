@@ -1,7 +1,7 @@
 const styles = {
   navBar: { 
     width: '100%', 
-    backgroundColor: '#D9EDBF', 
+    backgroundColor: '#A6D0DD', 
     }
 };
 
