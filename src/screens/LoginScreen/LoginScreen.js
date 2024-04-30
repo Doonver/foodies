@@ -16,6 +16,9 @@ import styles from './LoginScreenStyles.js'
 import { currUserAtom } from '../../atoms.js';
 import { useAtom } from 'jotai';
 
+// Import the image
+import topImage from './top.JPG'; // Update with the actual image file name and extension
+
 const LoginScreen = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -25,7 +28,6 @@ const LoginScreen = () => {
         console.log(username);
         console.log(password);
         setUser(username);
-        
     }
     const handleUserChange = (input) => {
         setUsername(input.target.value);
@@ -39,15 +41,18 @@ const LoginScreen = () => {
 
     return (
         <Box sx={styles.loginScreen}>
-            <Typography sx={styles.LoginTextStyle} variant="h4">Login</Typography>
+            <img src={topImage} alt="Placeholder Image" style={{ height: '30vh', width: '100%', objectFit: 'cover' }} />
+            <Typography variant="h5" sx={styles.welcomeText}>Welcome back!</Typography>
+            <Typography sx={{ ...styles.loginText, ...styles.LoginTextStyle }} variant="h4" align="left">Login</Typography>
             <TextField 
                 required
                 value={username} 
                 onChange={handleUserChange} 
-                sx={styles.textField} 
+                sx={{ ...styles.textField, textAlign: 'left' }} // Apply styles to TextField using sx prop
                 label="Username"
+                variant="outlined" // Add variant prop for outlined input
             />
-            <FormControl sx={styles.textField} variant="outlined">
+            <FormControl sx={{ ...styles.textField, textAlign: 'left' }} variant="outlined"> {/* Apply styles to FormControl using sx prop */}
                 <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                 <OutlinedInput
                     id="outlined-adornment-password"
@@ -67,7 +72,7 @@ const LoginScreen = () => {
                     label="Password"
                 />
             </FormControl>
-            <Button onClick={handleSubmit} sx={styles.submitButton} variant="contained">Submit</Button>
+            <Button onClick={handleSubmit} sx={{ ...styles.submitButton, marginLeft: 0 }} variant="contained">Submit</Button>
         </Box>
     );
 }
