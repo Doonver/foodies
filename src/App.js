@@ -8,7 +8,6 @@ import LoginScreen from './screens/LoginScreen/LoginScreen.js';
 import ProfileScreen from './screens/ProfileScreen/ProfileScreen.js'
 import HomeScreen from './screens/HomeScreen/HomeScreen.js';
 import PantryScreen from './screens/PantryScreen/PantryScreen.js';
-import OCRScreen from './screens/OCRScreen/OCRScreen.js';
 
 function App() {
   const [user, setUser] = useAtom(currUserAtom);
@@ -16,7 +15,7 @@ function App() {
 
   return (
     <div>
-      {/* {user ? (
+      {user ? (
         <div className="App">
           {page === "Pantry" && <PantryScreen/>}
           {page === "Home" && <HomeScreen/>}
@@ -26,9 +25,8 @@ function App() {
         <div className="App">
           <LoginScreen/>
         </div>
-      )} */
-      }
-      <OCRScreen />
+      )
+    }
     </div>
   );
 }
