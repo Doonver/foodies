@@ -26,7 +26,8 @@ function App() {
         <div className="App">
           <LoginScreen/>
         </div>
-      )}
+      )
+    }
     </div>
   );
 }
