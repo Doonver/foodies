@@ -10,19 +10,19 @@ const styles = {
     },
     profileBox: {
         backgroundColor: '#FF6969', // Dark green color for profile box
-        width: 'calc(100% - 40px)', // Fit to the rectangle width wise
+        width: '100%', // Fit to the rectangle width wise
         marginTop: '0', // Start from the top
         marginBottom: '3px', // Increase margin bottom to push other content downwards
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center', // Center align horizontally
-        justifyContent: 'flex-end', // Align content at the bottom
+        justifyContent: 'center', // Align content at the bottom
+        height: '20%',
     },
     profileImg: {
         width: '100px', // Decrease profile pic size
         height: '100px', // Decrease profile pic size
         borderRadius: '50%',
-        marginTop: 'auto', // Align the profile image at the bottom of the red rectangle
     },
     profileName: {
         fontSize: '30px', // Increase font size for name

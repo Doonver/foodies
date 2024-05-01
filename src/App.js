@@ -13,7 +13,6 @@ import SearchScreen from './screens/SearchScreen/SearchScreen.js';
 function App() {
   const [user, setUser] = useAtom(currUserAtom);
   const [page, setPage] = useAtom(currPageAtom);
-  setUser("Denver")
   return (
     <div>
       {user ? (

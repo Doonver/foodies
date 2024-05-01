@@ -4,6 +4,9 @@ export const icrAtom = atom(10);
 export const currPageAtom = atom('Home');
 export const pantryItemsAtom = atom(['apples', 'flour', 'sugar']);
 export const recipesAtom = atom([]);
+export const dietAtom = atom([]);
+export const allergenAtom = atom([]);
+
 // export const recipesAtom = atom([{
 //     "vegetarian": false,
 //     "vegan": false,
