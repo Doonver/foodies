@@ -19,12 +19,11 @@ const styles = {
     position: 'relative',
     display: 'flex',
     backgroundColor: '#FFF9DE',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     flexDirection: 'column',
     width: '100%',
     height: '100%',
-    padding: '20px',
   },
   imageContainer: {
     position: 'absolute',

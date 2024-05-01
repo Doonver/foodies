@@ -13,6 +13,7 @@ const styles = {
     display: 'flex',
     justifyContent: 'space-between',
     width: '80%',
+    marginBottom: '20px',
   },
   scrollable: {
     display: "flex",
@@ -33,18 +34,20 @@ const styles = {
   },
   image: {
     maxWidth: "100%",
-    margin: "10px 0 20px 0",
-    height: '29%'
+    margin: "0 0 40px 0",
+    height: '35%'
   },
   bottomGroup: {
     display: 'flex',
     flexDirection: 'column',
     height: '100%',
     justifyContent: 'flex-end',
-    margin: '20px'
+    margin: '20px',
+    width: '90%'
   },
   sugarLevel: {
-    display: 'flex'
+    display: 'flex',
+    color: '#FF6969'
   }
 };
 

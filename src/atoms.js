@@ -2,7 +2,7 @@ import { atom } from 'jotai';
 export const currUserAtom = atom('');
 export const icrAtom = atom(10);
 export const currPageAtom = atom('Home');
-export const pantryItemsAtom = atom(['apples', 'flour', 'sugar']);
+export const pantryItemsAtom = atom(['apples', 'flour', 'sugar', 'corn', 'corn','corn','corn','corn','corn','corn','corn',]);
 export const recipesAtom = atom([]);
 export const dietAtom = atom([]);
 export const allergenAtom = atom([]);

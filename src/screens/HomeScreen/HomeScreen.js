@@ -58,7 +58,7 @@ const HomeScreen = () => {
                 </Box>
                 <Box sx={styles.bottomGroup}>
                     <Box sx={styles.heading}>
-                        <Typography variant='h4'>
+                        <Typography sx={styles.sugarLevel} variant='h4'>
                             <Box component="span" fontWeight='fontWeightBold'>
                                 Hello {user}!
                             </Box>
@@ -72,8 +72,8 @@ const HomeScreen = () => {
                     <Card sx={styles.image}>
                         <CardMedia
                             component="img"
-                            height="200"
-                            image="/graph.png"
+                            height="fit-content"
+                            image="/graph_new.png"
                         />
                     </Card>
                     <TextField
