@@ -26,15 +26,6 @@ const styles = {
     width: '90%',
     margin: '10px'
   },
-  recipeList: {
-    maxHeight: 700, 
-    overflow: 'auto',
-  },
-  list: {
-    display: 'flex',
-    alignItems: 'center',
-    flexDirection: 'column',
-  },
   avatar: {
     display: 'flex',
     flexDirection: 'row-reverse',

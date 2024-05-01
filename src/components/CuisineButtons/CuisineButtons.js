@@ -4,6 +4,8 @@ import Box from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
 import Typography from '@mui/material/Typography';
 import styles from './CuisineButtonsStyles';
+import { useAtom } from 'jotai';
+import { currPageAtom, recipesAtom } from '../../atoms';
 
 const images = [
   {
@@ -73,12 +75,39 @@ const ImageBackdrop = styled('span')(({ theme }) => ({
 }));
 
 const CuisineButtons = () => {
+  const url = "https://api.spoonacular.com/recipes/complexSearch";
+  const apiKey = "b78f11225f014087a32f54070b440e30";
+  const [page, setPage] = useAtom(currPageAtom);
+  const [recipe, setRecipes] = useAtom(recipesAtom)
+
+
+  const handleCuisineSearch = (cuisine) => {
+    console.log('Search triggered with value:', cuisine);
+    const fullUrl = `${url}?&apiKey=${apiKey}&addRecipeNutrition=true&cuisine=${cuisine}`;
+    console.log(fullUrl)
+    fetch(fullUrl)
+        .then(response => {
+            if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data['results'])
+            setRecipes(data['results'])
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
+    setPage('Search')
+  }
   return (
     <Box sx={styles.container}>
       {images.map((image) => (
         <ImageButton
           key={image.title}
           style={styles.imageButton}
+          onClick={() => handleCuisineSearch(image.title)}
         >
           <ImageSrc style={{ backgroundImage: `url(${image.url})` }} />
           <ImageBackdrop className="MuiImageBackdrop-root" />

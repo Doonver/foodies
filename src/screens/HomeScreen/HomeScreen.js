@@ -4,9 +4,8 @@ import { Box, Typography, Avatar, TextField, InputAdornment, List, Card, CardMed
 import SearchIcon from '@mui/icons-material/Search';
 
 import styles from './HomeScreenStyles.js'
-import { currUserAtom, icrAtom, pantryItemsAtom, recipesAtom } from '../../atoms.js';
+import { currUserAtom, icrAtom, pantryItemsAtom, recipesAtom, currPageAtom } from '../../atoms.js';
 import NavBar from '../../components/NavBar/NavBar.js';
-import RecipeCard from '../../components/RecipeCard/RecipeCard.js'
 import CuisineButtons from '../../components/CuisineButtons/CuisineButtons.js';
 
 
@@ -16,8 +15,8 @@ const HomeScreen = () => {
     const [icr, setIcr] = useAtom(icrAtom);
     const [pantryItems, setPantryItems] = useAtom(pantryItemsAtom);
     const [recipes, setRecipes] = useAtom(recipesAtom);
+    const [page, setPage] = useAtom(currPageAtom)
 
-    // Define the URL with your API key
     const url = "https://api.spoonacular.com/recipes/complexSearch";
     const apiKey = "b78f11225f014087a32f54070b440e30";
 
@@ -45,6 +44,7 @@ const HomeScreen = () => {
                 .catch(error => {
                     console.error("Error:", error);
                 });
+            setPage('Search')
         }
         
     }
@@ -88,14 +88,6 @@ const HomeScreen = () => {
                     />
                     <CuisineButtons/>
                 </Box>
-                {/* <Box sx={styles.recipeList}>
-                    <List sx={styles.list}>
-                        {recipes.map((recipe) => {
-                            return <RecipeCard key={recipe.id} recipe={recipe}/>
-                        })}
-                    </List>
-                </Box> */}
-                
             </Box>
             <NavBar/>
         </Box>
