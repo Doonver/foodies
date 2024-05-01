@@ -5,7 +5,7 @@ import ButtonBase from '@mui/material/ButtonBase';
 import Typography from '@mui/material/Typography';
 import styles from './CuisineButtonsStyles';
 import { useAtom } from 'jotai';
-import { currPageAtom, recipesAtom } from '../../atoms';
+import { currPageAtom, recipesAtom, loadingAtom } from '../../atoms';
 
 const images = [
   {
@@ -79,12 +79,15 @@ const CuisineButtons = () => {
   const apiKey = "b78f11225f014087a32f54070b440e30";
   const [page, setPage] = useAtom(currPageAtom);
   const [recipe, setRecipes] = useAtom(recipesAtom)
+  const [loading, setLoading] = useAtom(loadingAtom)
 
 
   const handleCuisineSearch = (cuisine) => {
     console.log('Search triggered with value:', cuisine);
     const fullUrl = `${url}?&apiKey=${apiKey}&addRecipeNutrition=true&cuisine=${cuisine}`;
     console.log(fullUrl)
+    setLoading(true)
+    setRecipes([])
     fetch(fullUrl)
         .then(response => {
             if (!response.ok) {
@@ -95,6 +98,7 @@ const CuisineButtons = () => {
         .then(data => {
             console.log(data['results'])
             setRecipes(data['results'])
+            setLoading(false);
         })
         .catch(error => {
             console.error("Error:", error);

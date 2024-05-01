@@ -5,6 +5,7 @@ import NavBar from '../../components/NavBar/NavBar.js';
 
 const ProfileScreen = () => {
     // Define initial dietary restrictions
+    const height = "5' 6\""
     const [dietaryRestrictions, setDietaryRestrictions] = useState(['Vegetarian', 'Vegan', 'Gluten-free', 'Dairy-free']);
     // Define initial allergens
     const [allergens, setAllergens] = useState(['Nut', 'Seafood', 'Gluten']);
@@ -50,43 +51,43 @@ const ProfileScreen = () => {
             <Box sx={styles.profileBox}>
                 <img src={require('./1000_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg')} alt="" style={styles.profileImg} />
             </Box>
-            <Typography variant="h5" sx={{ ...styles.profileName, textAlign: 'left', marginTop: '10px' }}>John Doe</Typography>
+            <Typography variant="h5" sx={{ ...styles.profileName, textAlign: 'left', marginTop: '10px' }}>Siddarth Marathe</Typography>
             <Box sx={styles.profileDetails}>
                 <Grid container spacing={2}>
                     <Grid item xs={6}>
                         <Box sx={{ marginBottom: '10px' }}>
                             <Typography sx={{ ...styles.detailText, textAlign: 'left', margin: '0', padding: '0' }}><strong>Sex</strong></Typography>
-                            <TextField sx={{ ...styles.textField, width: '129px', height: '100%', borderRadius: '6px', margin: '0', minHeight: 'unset' }} />
+                            <TextField sx={{ ...styles.textField, width: '129px', height: '100%', borderRadius: '6px', margin: '0', minHeight: 'unset' }} defaultValue="Male"/>
                         </Box>
                     </Grid>
                     <Grid item xs={6}>
                         <Box sx={{ marginBottom: '10px' }}>
                             <Typography sx={{ ...styles.detailText, textAlign: 'left', margin: '0', padding: '0' }}><strong>Age</strong></Typography>
-                            <TextField sx={{ ...styles.textField, width: '129px', height: '100%', borderRadius: '6px', margin: '0', minHeight: 'unset' }} />
+                            <TextField sx={{ ...styles.textField, width: '129px', height: '100%', borderRadius: '6px', margin: '0', minHeight: 'unset' }} defaultValue="23"/>
                         </Box>
                     </Grid>
                     <Grid item xs={6}>
                         <Box sx={{ marginBottom: '10px' }}>
                             <Typography sx={{ ...styles.detailText, textAlign: 'left', margin: '0', padding: '0' }}><strong>Weight</strong></Typography>
-                            <TextField sx={{ ...styles.textField, width: '129px', height: '100%', borderRadius: '6px', margin: '0', minHeight: 'unset' }} />
+                            <TextField sx={{ ...styles.textField, width: '129px', height: '100%', borderRadius: '6px', margin: '0', minHeight: 'unset' }} defaultValue="153"/>
                         </Box>
                     </Grid>
                     <Grid item xs={6}>
                         <Box sx={{ marginBottom: '10px' }}>
                             <Typography sx={{ ...styles.detailText, textAlign: 'left', margin: '0', padding: '0' }}><strong>Height</strong></Typography>
-                            <TextField sx={{ ...styles.textField, width: '129px', height: '100%', borderRadius: '6px', margin: '0', minHeight: 'unset' }} />
+                            <TextField sx={{ ...styles.textField, width: '129px', height: '100%', borderRadius: '6px', margin: '0', minHeight: 'unset' }} defaultValue={height}/>
                         </Box>
                     </Grid>
                     <Grid item xs={6}>
                         <Box sx={{ marginBottom: '10px' }}>
                             <Typography sx={{ ...styles.detailText, textAlign: 'left', margin: '0', padding: '0' }}><strong>A1C Level</strong></Typography>
-                            <TextField sx={{ ...styles.textField, width: '129px', height: '100%', borderRadius: '6px', margin: '0', minHeight: 'unset' }} />
+                            <TextField sx={{ ...styles.textField, width: '129px', height: '100%', borderRadius: '6px', margin: '0', minHeight: 'unset' }} defaultValue="7.9%"/>
                         </Box>
                     </Grid>
                     <Grid item xs={6}>
                         <Box sx={{ marginBottom: '10px' }}>
                             <Typography sx={{ ...styles.detailText, textAlign: 'left', margin: '0', padding: '0' }}><strong>Insulin to Carb Ratio</strong></Typography>
-                            <TextField sx={{ ...styles.textField, width: '75px', height: '50%', borderRadius: '6px', margin: '0',  minHeight: 'unset' }} />
+                            <TextField sx={{ ...styles.textField, width: '75px', height: '50%', borderRadius: '6px', margin: '0',  minHeight: 'unset' }} defaultValue="12.7"/>
                         </Box>
                     </Grid>
                 </Grid>
@@ -102,7 +103,7 @@ const ProfileScreen = () => {
                             />
                         ))}
                         {/* Button component for adding dietary restrictions */}
-                        <Button onClick={handleClickDietary} variant="outlined" sx={{ ml: 1, ...styles.chip, borderRadius: '50%', width:'3px', height: chipHeightDietary }}>
+                        <Button onClick={handleClickDietary} sx={{ ml: 1, ...styles.chip, borderRadius: '50%', width:'3px', height: chipHeightDietary }}>
                             {/* Change width and height to chipHeightDietary */}
                             +
                         </Button>
@@ -142,7 +143,7 @@ const ProfileScreen = () => {
                             />
                         ))}
                         {/* Button component for adding allergens */}
-                        <Button onClick={handleClickAllergen} variant="outlined" sx={{ ml: 1, ...styles.chip, borderRadius: '50%', width:'3px', height: chipHeightAllergens }}>
+                        <Button onClick={handleClickAllergen} sx={{ ml: 1, ...styles.chip, borderRadius: '50%', width:'3px', height: chipHeightAllergens }}>
                             {/* Change width and height to chipHeightAllergens */}
                             +
                         </Button>

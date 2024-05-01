@@ -4,7 +4,7 @@ import { Box, Typography, Avatar, TextField, InputAdornment, List, Card, CardMed
 import SearchIcon from '@mui/icons-material/Search';
 
 import styles from './HomeScreenStyles.js'
-import { currUserAtom, icrAtom, pantryItemsAtom, recipesAtom, currPageAtom } from '../../atoms.js';
+import { currUserAtom, icrAtom, pantryItemsAtom, recipesAtom, currPageAtom, loadingAtom } from '../../atoms.js';
 import NavBar from '../../components/NavBar/NavBar.js';
 import CuisineButtons from '../../components/CuisineButtons/CuisineButtons.js';
 
@@ -16,6 +16,7 @@ const HomeScreen = () => {
     const [pantryItems, setPantryItems] = useAtom(pantryItemsAtom);
     const [recipes, setRecipes] = useAtom(recipesAtom);
     const [page, setPage] = useAtom(currPageAtom)
+    const [loading, setLoading] = useAtom(loadingAtom)
 
     const url = "https://api.spoonacular.com/recipes/complexSearch";
     const apiKey = "b78f11225f014087a32f54070b440e30";
@@ -30,6 +31,8 @@ const HomeScreen = () => {
             console.log('Search triggered with value:', searchQuery);
             const fullUrl = `${url}?query=${searchQuery}&apiKey=${apiKey}&addRecipeNutrition=true`;
             console.log(fullUrl)
+            setRecipes([])
+            setLoading(true);
             fetch(fullUrl)
                 .then(response => {
                     if (!response.ok) {
@@ -40,11 +43,13 @@ const HomeScreen = () => {
                 .then(data => {
                     console.log(data['results'])
                     setRecipes(data['results'])
+                    setLoading(false);
                 })
                 .catch(error => {
                     console.error("Error:", error);
                 });
             setPage('Search')
+            
         }
         
     }
@@ -54,13 +59,13 @@ const HomeScreen = () => {
         <Box sx={styles.scrollable}>
             <Box sx={styles.homeScreen}>
                 <Box sx={styles.avatar}>
-                    <Avatar sx={{bgcolor: '#A6D0DD'}}>{user[0].toUpperCase()}</Avatar>
+                    <Avatar sx={{bgcolor: '#A6D0DD'}}>{'S'}</Avatar>
                 </Box>
                 <Box sx={styles.bottomGroup}>
                     <Box sx={styles.heading}>
                         <Typography sx={styles.sugarLevel} variant='h4'>
                             <Box component="span" fontWeight='fontWeightBold'>
-                                Hello {user}!
+                                Hello Siddarth!
                             </Box>
                         </Typography>
                     </Box>

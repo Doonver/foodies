@@ -3,16 +3,17 @@ const styles = {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        backgroundColor: '#D9EDBF', // Light green background color
+        backgroundColor: '#FFF9DE', // Light green background color
         width: '100%',
         height: '100%',
         paddingTop: '20px', // Add some padding
         fontFamily: 'Roboto, sans-serif', // Change font family for the entire page
         justifyContent: 'space-between',
+        minHeight: '60%'
     },
     pageTitle: {
         marginBottom: '20px',
-        color: '#2C7865', // Dark green color for the title
+        color: '#FF6969', // Dark green color for the title
         fontSize: '36px', // Increase font size for the title
         fontWeight: 'bold', // Add bold font weight
         textAlign: 'center' // Center align text
@@ -22,10 +23,12 @@ const styles = {
         flexDirection: 'column',
         alignItems: 'center', // Center items horizontally
         width: '90%', // Set width to 100% to stretch horizontally
-        marginTop: '20px' // Add space between pantry title and item boxes
+        marginTop: '20px', // Add space between pantry title and item boxes
+        height: '60%',
+        overflow: 'auto',
     },
     itemBox: {
-        backgroundColor: '#FFFFFF', // White background color for each item
+        backgroundColor: '#FFE0C7', // White background color for each item
         borderRadius: '12px', // Add rounded corners
         padding: '20px', // Add more padding around each item
         marginBottom: '20px', // Add more space between items
