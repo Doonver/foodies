@@ -91,7 +91,7 @@ const PantryScreen = () => {
             <button onClick={parseText} disabled={isLoading}>
                 {isLoading ? 'Extracting...' : 'Extract Text'}
             </button>
-            {/* {text && <p>Extracted Text: {text}</p>} */}
+            {/* {text && <p>Extracted Text: {text}</p>} use this to test the output*/}
 
             <Typography variant="h4" sx={{ ...styles.pageTitle, textAlign: 'left', fontFamily: 'Arial, sans-serif' }}>Pantry</Typography>
             <Box sx={styles.itemContainer}>
@@ -100,11 +100,12 @@ const PantryScreen = () => {
                         <Typography sx={styles.itemQuantity}>{item.quantity}</Typography> 
                         <Typography sx={styles.itemText}>{item.name}</Typography>
 
-                        <IconButton onClick={() => inc(index)}>
-                            <AddCircle color="black" />
-                        </IconButton>
                         <IconButton onClick={() => dec(index)}>
                             <RemoveCircle color="black" />
+                        </IconButton>
+
+                        <IconButton onClick={() => inc(index)}>
+                            <AddCircle color="black" />
                         </IconButton>
                     </Box>
                 ))}
