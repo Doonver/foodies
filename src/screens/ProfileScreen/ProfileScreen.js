@@ -35,7 +35,7 @@ const ProfileScreen = () => {
     };
 
     return (
-        <Box sx={{ ...styles.profilePage, marginTop: '20px' }}>
+        <Box sx={styles.profilePage}>
             <Box sx={styles.profileBox}>
                 <img src={require('./1000_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg')} alt="" style={styles.profileImg} />
             </Box>
@@ -45,37 +45,37 @@ const ProfileScreen = () => {
                     <Grid item xs={6}>
                         <Box sx={{ marginBottom: '10px' }}>
                             <Typography sx={{ ...styles.detailText, textAlign: 'left', margin: '0', padding: '0' }}><strong>Sex</strong></Typography>
-                            <TextField sx={{ ...styles.textField, width: '129px', height: '30px', borderRadius: '10px', margin: '0' }} />
+                            <TextField sx={{ ...styles.textField, width: '129px', height: '100%', borderRadius: '6px', margin: '0' }} />
                         </Box>
                     </Grid>
                     <Grid item xs={6}>
                         <Box sx={{ marginBottom: '10px' }}>
                             <Typography sx={{ ...styles.detailText, textAlign: 'left', margin: '0', padding: '0' }}><strong>Age</strong></Typography>
-                            <TextField sx={{ ...styles.textField, width: '129px', height: '30px', borderRadius: '10px', margin: '0' }} />
+                            <TextField sx={{ ...styles.textField, width: '129px', height: '100%', borderRadius: '6px', margin: '0' }} />
                         </Box>
                     </Grid>
                     <Grid item xs={6}>
                         <Box sx={{ marginBottom: '10px' }}>
                             <Typography sx={{ ...styles.detailText, textAlign: 'left', margin: '0', padding: '0' }}><strong>Weight</strong></Typography>
-                            <TextField sx={{ ...styles.textField, width: '129px',height: '30px', borderRadius: '10px', margin: '0' }} />
+                            <TextField sx={{ ...styles.textField, width: '129px',height: '100%', borderRadius: '6px', margin: '0' }} />
                         </Box>
                     </Grid>
                     <Grid item xs={6}>
                         <Box sx={{ marginBottom: '10px' }}>
                             <Typography sx={{ ...styles.detailText, textAlign: 'left', margin: '0', padding: '0' }}><strong>Height</strong></Typography>
-                            <TextField sx={{ ...styles.textField, width: '129px', height: '30px', borderRadius: '10px', margin: '0' }} />
+                            <TextField sx={{ ...styles.textField, width: '129px', height: '100%', borderRadius: '6px', margin: '0' }} />
                         </Box>
                     </Grid>
                     <Grid item xs={6}>
                         <Box sx={{ marginBottom: '10px' }}>
                             <Typography sx={{ ...styles.detailText, textAlign: 'left', margin: '0', padding: '0' }}><strong>A1C Level</strong></Typography>
-                            <TextField sx={{ ...styles.textField, width: '129px', height: '30px', borderRadius: '10px', margin: '0' }} />
+                            <TextField sx={{ ...styles.textField, width: '129px', height: '100%', borderRadius: '6px', margin: '0' }} />
                         </Box>
                     </Grid>
                     <Grid item xs={6}>
                         <Box sx={{ marginBottom: '10px' }}>
                             <Typography sx={{ ...styles.detailText, textAlign: 'left', margin: '0', padding: '0' }}><strong>Insulin to Carb Ratio</strong></Typography>
-                            <TextField sx={{ ...styles.textField, width: '129px', height: '30px', margin: '0' }} />
+                            <TextField sx={{ ...styles.textField, width: '129px', height: '100%', borderRadius: '6px', margin: '0' }} />
                         </Box>
                     </Grid>
                 </Grid>

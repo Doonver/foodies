@@ -58,12 +58,17 @@ const HomeScreen = () => {
                 </Box>
                 <Box sx={styles.bottomGroup}>
                     <Box sx={styles.heading}>
-                        <Typography variant='h5'>
-                            <Box component="span" fontWeight='fontWeightMedium'>
+                        <Typography variant='h4'>
+                            <Box component="span" fontWeight='fontWeightBold'>
                                 Hello {user}!
                             </Box>
                         </Typography>
                     </Box>
+                    <Typography sx={styles.sugarLevel}variant='h6'>
+                            <Box component="span" fontWeight='fontWeightMedium'>
+                                Your Sugar Level:
+                            </Box>
+                        </Typography>
                     <Card sx={styles.image}>
                         <CardMedia
                             component="img"

@@ -1,6 +1,6 @@
 const styles = {
     recipeCard: { 
-        width: '90%',
+        width: '80%',
         height: '100%',
         margin: '8px',
     },

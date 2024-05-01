@@ -34,13 +34,17 @@ const styles = {
   image: {
     maxWidth: "100%",
     margin: "10px 0 20px 0",
-    height: '33%'
+    height: '29%'
   },
   bottomGroup: {
     display: 'flex',
     flexDirection: 'column',
     height: '100%',
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
+    margin: '20px'
+  },
+  sugarLevel: {
+    display: 'flex'
   }
 };
 

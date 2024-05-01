@@ -10,7 +10,6 @@ const styles = {
     },
     profileBox: {
         backgroundColor: '#FF6969', // Dark green color for profile box
-        padding: '20px', // Add padding inside the profile box
         width: 'calc(100% - 40px)', // Fit to the rectangle width wise
         marginTop: '0', // Start from the top
         marginBottom: '3px', // Increase margin bottom to push other content downwards
