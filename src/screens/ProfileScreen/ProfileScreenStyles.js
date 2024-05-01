@@ -11,10 +11,9 @@ const styles = {
     profileBox: {
         backgroundColor: '#FF6969', // Dark green color for profile box
         padding: '20px', // Add padding inside the profile box
-        borderRadius: '12px', // Add rounded corners
         width: 'calc(100% - 40px)', // Fit to the rectangle width wise
         marginTop: '0', // Start from the top
-        marginBottom: '20px', // Increase margin bottom to push other content downwards
+        marginBottom: '3px', // Increase margin bottom to push other content downwards
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center', // Center align horizontally
@@ -27,9 +26,9 @@ const styles = {
         marginTop: 'auto', // Align the profile image at the bottom of the red rectangle
     },
     profileName: {
-        fontSize: '40px', // Increase font size for name
+        fontSize: '30px', // Increase font size for name
         color: '#FF6969', // White color for name
-        marginTop: '10px', // Add margin top to separate name from profile image
+        marginTop: '5px', // Add margin top to separate name from profile image
     },
     profileDetails: {
         display: 'flex',
@@ -42,7 +41,7 @@ const styles = {
         color: '#FF6969', // Red color for detail text
     },
     textField: {
-        borderRadius: '4px',
+        borderRadius: '10px',
         width: '60%', // Decrease width of text fields
         margin: '10px',
         backgroundColor: '#FFD3B0', // Set background color of text fields to #FFD3B0

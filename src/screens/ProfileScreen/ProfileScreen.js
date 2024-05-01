@@ -35,73 +35,77 @@ const ProfileScreen = () => {
     };
 
     return (
-        <Box sx={styles.profilePage}>
+        <Box sx={{ ...styles.profilePage, marginTop: '20px' }}>
             <Box sx={styles.profileBox}>
                 <img src={require('./1000_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg')} alt="" style={styles.profileImg} />
             </Box>
-            <Typography variant="h5" sx={styles.profileName}>John Doe</Typography>
+            <Typography variant="h5" sx={{ ...styles.profileName, textAlign: 'left', marginTop: '10px' }}>John Doe</Typography>
             <Box sx={styles.profileDetails}>
                 <Grid container spacing={2}>
                     <Grid item xs={6}>
                         <Box sx={{ marginBottom: '10px' }}>
-                            <Typography sx={styles.detailText}><strong>Sex</strong></Typography>
-                            <TextField sx={{ ...styles.textField, width: '100%', maxWidth: '100px' }} />
+                            <Typography sx={{ ...styles.detailText, textAlign: 'left', margin: '0', padding: '0' }}><strong>Sex</strong></Typography>
+                            <TextField sx={{ ...styles.textField, width: '129px', height: '30px', borderRadius: '10px', margin: '0' }} />
                         </Box>
                     </Grid>
                     <Grid item xs={6}>
                         <Box sx={{ marginBottom: '10px' }}>
-                            <Typography sx={styles.detailText}><strong>Age</strong></Typography>
-                            <TextField sx={{ ...styles.textField, width: '100%', maxWidth: '100px' }} />
+                            <Typography sx={{ ...styles.detailText, textAlign: 'left', margin: '0', padding: '0' }}><strong>Age</strong></Typography>
+                            <TextField sx={{ ...styles.textField, width: '129px', height: '30px', borderRadius: '10px', margin: '0' }} />
                         </Box>
                     </Grid>
                     <Grid item xs={6}>
                         <Box sx={{ marginBottom: '10px' }}>
-                            <Typography sx={styles.detailText}><strong>Weight</strong></Typography>
-                            <TextField sx={{ ...styles.textField, width: '100%', maxWidth: '100px' }} />
+                            <Typography sx={{ ...styles.detailText, textAlign: 'left', margin: '0', padding: '0' }}><strong>Weight</strong></Typography>
+                            <TextField sx={{ ...styles.textField, width: '129px',height: '30px', borderRadius: '10px', margin: '0' }} />
                         </Box>
                     </Grid>
                     <Grid item xs={6}>
                         <Box sx={{ marginBottom: '10px' }}>
-                            <Typography sx={styles.detailText}><strong>Height</strong></Typography>
-                            <TextField sx={{ ...styles.textField, width: '100%', maxWidth: '100px' }} />
+                            <Typography sx={{ ...styles.detailText, textAlign: 'left', margin: '0', padding: '0' }}><strong>Height</strong></Typography>
+                            <TextField sx={{ ...styles.textField, width: '129px', height: '30px', borderRadius: '10px', margin: '0' }} />
                         </Box>
                     </Grid>
                     <Grid item xs={6}>
                         <Box sx={{ marginBottom: '10px' }}>
-                            <Typography sx={styles.detailText}><strong>A1C Level</strong></Typography>
-                            <TextField sx={{ ...styles.textField, width: '100%', maxWidth: '100px' }} />
+                            <Typography sx={{ ...styles.detailText, textAlign: 'left', margin: '0', padding: '0' }}><strong>A1C Level</strong></Typography>
+                            <TextField sx={{ ...styles.textField, width: '129px', height: '30px', borderRadius: '10px', margin: '0' }} />
                         </Box>
                     </Grid>
                     <Grid item xs={6}>
                         <Box sx={{ marginBottom: '10px' }}>
-                            <Typography sx={styles.detailText}><strong>Insulin to Carb Ratio</strong></Typography>
-                            <TextField sx={{ ...styles.textField, width: '100%', maxWidth: '100px' }} />
+                            <Typography sx={{ ...styles.detailText, textAlign: 'left', margin: '0', padding: '0' }}><strong>Insulin to Carb Ratio</strong></Typography>
+                            <TextField sx={{ ...styles.textField, width: '129px', height: '30px', margin: '0' }} />
                         </Box>
                     </Grid>
                 </Grid>
-                <Typography sx={styles.detailText}><strong>Dietary Restrictions:</strong></Typography>
-                <Box>
-                    {dietaryRestrictions.map((restriction, index) => (
-                        <Chip
-                            key={index}
-                            label={restriction}
-                            onDelete={() => handleDelete(restriction)}
-                            onClick={() => handleClick(restriction)}
-                            sx={{ marginRight: '5px', marginBottom: '5px' }}
-                        />
-                    ))}
+                <Box sx={{ marginTop: '10px' }}>
+                    <Typography sx={{ ...styles.detailText, textAlign: 'left' }}><strong>Dietary Restrictions:</strong></Typography>
+                    <Box>
+                        {dietaryRestrictions.map((restriction, index) => (
+                            <Chip
+                                key={index}
+                                label={restriction}
+                                onDelete={() => handleDelete(restriction)}
+                                onClick={() => handleClick(restriction)}
+                                sx={styles.chip}
+                            />
+                        ))}
+                    </Box>
                 </Box>
-                <Typography sx={styles.detailText}><strong>Allergens:</strong></Typography>
-                <Box>
-                    {allergens.map((allergen, index) => (
-                        <Chip
-                            key={index}
-                            label={allergen}
-                            onDelete={() => handleAllergenDelete(allergen)}
-                            onClick={() => handleAllergenClick(allergen)}
-                            sx={{ marginRight: '5px', marginBottom: '5px' }}
-                        />
-                    ))}
+                <Box sx={{ marginTop: '10px' }}>
+                    <Typography sx={{ ...styles.detailText, textAlign: 'left' }}><strong>Allergens:</strong></Typography>
+                    <Box>
+                        {allergens.map((allergen, index) => (
+                            <Chip
+                                key={index}
+                                label={allergen}
+                                onDelete={() => handleAllergenDelete(allergen)}
+                                onClick={() => handleAllergenClick(allergen)}
+                                sx={styles.chip}
+                            />
+                        ))}
+                    </Box>
                 </Box>
             </Box>
             <NavBar />
