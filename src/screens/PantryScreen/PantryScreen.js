@@ -1,13 +1,27 @@
 import React, { useState } from 'react';
-import { Box, Typography, IconButton } from '@mui/material';
+import { Box, Typography, IconButton, Button, CircularProgress } from '@mui/material';
 import styles from './PantryScreenStyles';
 import NavBar from '../../components/NavBar/NavBar';
 import { useAtom } from 'jotai';
 import { pantryItemsAtom } from '../../atoms';
 import Tesseract from 'tesseract.js';
 import { AddCircle, RemoveCircle, Delete } from '@mui/icons-material';
+import CameraAltIcon from '@mui/icons-material/CameraAlt';
+import { styled } from '@mui/material/styles';
+
 
 const PantryScreen = () => {
+    const VisuallyHiddenInput = styled('input')({
+        clip: 'rect(0 0 0 0)',
+        clipPath: 'inset(50%)',
+        height: 1,
+        overflow: 'hidden',
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        whiteSpace: 'nowrap',
+        width: 1,
+    });
     const [pantryItems, setPantryItems] = useAtom(pantryItemsAtom);
     const [itemQuantities, setItemQuantities] = useState(
         pantryItems.map((item) => ({ name: item, quantity: 1 }))
@@ -44,6 +58,7 @@ const PantryScreen = () => {
             };
             reader.readAsDataURL(file);
         }
+        parseText();
     };
 
     const parseText = () => {
@@ -71,8 +86,9 @@ const PantryScreen = () => {
                 ).then(response => response.text());
 
                 const doubleArray = JSON.parse(response);
-
+                console.log(doubleArray)
                 const newPantryItems = doubleArray.map((item) => ({ name: item[0], quantity: item[1] }));
+                console.log(newPantryItems)
                 setPantryItems([...pantryItems, ...newPantryItems]);
                 setItemQuantities([...itemQuantities, ...newPantryItems]);
 
@@ -88,24 +104,32 @@ const PantryScreen = () => {
 
     return (
         <Box sx={styles.pantryPage}>
-            <input type="file" accept="image/*" onChange={fileChange} />
-            <button onClick={parseText} disabled={isLoading}>
-                {isLoading ? 'Extracting...' : 'Extract Text'}
-            </button>
-            {/* {text && <p>Extracted Text: {text}</p>} use this to test the output*/}
+            <Button
+                component="label"
+                role={undefined}
+                variant="contained"
+                tabIndex={-1}
+                startIcon={<CameraAltIcon/>}
+                sx={{backgroundColor:'#FF6969'}}
+                >
+                Upload Receipt
+                <VisuallyHiddenInput type="file" onChange={fileChange}/>
+            </Button>
+
 
             <Typography variant="h4" sx={{ ...styles.pageTitle, textAlign: 'left', fontFamily: 'Arial, sans-serif' }}>Pantry</Typography>
             <Box sx={styles.itemContainer}>
-                {itemQuantities.map((item, index) => (
+                {isLoading ? <CircularProgress/>: <></>}
+                {Object.entries(pantryItems).map(([name, quantity], index) => (
                     <Box key={index} sx={styles.itemBox}>
-                        <Typography sx={styles.itemQuantity}>{item.quantity}</Typography> 
-                        <Typography sx={styles.itemText}>{item.name}</Typography>
+                        <Typography sx={styles.itemQuantity}>{quantity}</Typography> 
+                        <Typography sx={styles.itemText}>{name}</Typography>
 
-                        <IconButton onClick={() => dec(index)}>
+                        <IconButton onClick={() => dec(name)}>
                             <RemoveCircle color="black" />
                         </IconButton>
 
-                        <IconButton onClick={() => inc(index)}>
+                        <IconButton onClick={() => inc(name)}>
                             <AddCircle color="black" />
                         </IconButton>
                     </Box>
