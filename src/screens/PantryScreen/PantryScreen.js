@@ -1,53 +1,42 @@
 import React, { useState } from 'react';
-import { Box, Typography, IconButton, Button } from '@mui/material';
+import { Box, Typography, IconButton } from '@mui/material';
 import styles from './PantryScreenStyles';
 import NavBar from '../../components/NavBar/NavBar';
 import { useAtom } from 'jotai';
 import { pantryItemsAtom } from '../../atoms';
 import Tesseract from 'tesseract.js';
 import { AddCircle, RemoveCircle, Delete } from '@mui/icons-material';
-import CameraAltIcon from '@mui/icons-material/CameraAlt';
-import { styled } from '@mui/material/styles';
-
-const VisuallyHiddenInput = styled('input')({
-  clip: 'rect(0 0 0 0)',
-  clipPath: 'inset(50%)',
-  height: 1,
-  overflow: 'hidden',
-  position: 'absolute',
-  bottom: 0,
-  left: 0,
-  whiteSpace: 'nowrap',
-  width: 1,
-});
 
 const PantryScreen = () => {
     const [pantryItems, setPantryItems] = useAtom(pantryItemsAtom);
-    const [fileName, setFileName] = useState('')
+    const [itemQuantities, setItemQuantities] = useState(
+        pantryItems.map((item) => ({ name: item, quantity: 1 }))
+    );
     const [image, setImage] = useState(null);
     const [text, setText] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [a, b] = useState('');
 
-    const inc = (name) => {
-        const newPantryItems = {...pantryItems};
-        newPantryItems[name] = (newPantryItems[name] || 0) + 1;
-        setPantryItems(newPantryItems);
+    const inc = (index) => {
+        const newQuantities = [...itemQuantities];
+        newQuantities[index].quantity += 1;
+        setItemQuantities(newQuantities);
     };
 
-    const dec = (name) => {
-        const newPantryItems = {...pantryItems};
-        if (newPantryItems[name] > 1) {
-            newPantryItems[name] -= 1;
-            setPantryItems(newPantryItems);
+    const dec = (index) => {
+        const newQuantities = [...itemQuantities];
+        if (newQuantities[index].quantity > 1) {
+            newQuantities[index].quantity -= 1;
+            setItemQuantities(newQuantities);
         } else {
-            delete newPantryItems[name];
-            setPantryItems(newPantryItems);
+            const updatedPantryItems = pantryItems.filter((_, i) => i !== index);
+            setPantryItems(updatedPantryItems);
+            setItemQuantities(newQuantities.filter((_, i) => i !== index));
         }
     };
 
     const fileChange = (e) => {
         const file = e.target.files[0];
-        setFileName(file.name)
         if (file) {
             const reader = new FileReader();
             reader.onload = (event) => {
@@ -55,52 +44,68 @@ const PantryScreen = () => {
             };
             reader.readAsDataURL(file);
         }
-        parseText();
     };
 
     const parseText = () => {
-        console.log(fileName)
-        if (fileName === "receipt3.png") {
-            setTimeout(() => setPantryItems({'Potato Chips': 1, 'Hummus': 1, 'Cheddar Cheese': 1, 'Pita Bread': 1, 'Olives': 1, "Peanut Butter": 1}), 2000)
-        }
+        if (image) {
+            setIsLoading(true);
+            Tesseract.recognize(image, 'eng', {
+                logger: (m) => console.log(m),
+            })
+            .then(async ({ data: { text } }) => {
+                // import fetch from 'node-fetch'; // for node.js
 
-        if (fileName === "receipt1.png") {
-            setTimeout(() => setPantryItems({'Dragonfruit': 1, 'Bannas': 3, 'Chicken': 1}), 2500)
-        }
+                const response = await fetch(
+                    'https://noggin.rea.gent/musical-booby-4876',
+                    {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: 'Bearer rg_v1_rv33ypj2lml3hqyow996vats5rot91v61q89_ngk',
+                    },
+                    body: JSON.stringify({
+                        // fill variables here.
+                        "parsed-text": text,
+                    }),
+                    }
+                ).then(response => response.text());
 
-        if (fileName === "receipt2.png") {
-            setTimeout(() => setPantryItems({'Rice': 900, 'Eggs': 12, 'Fish': 1, 'Bananas': 3, 'Loaf of Bread': 1, "Chicken": 1}), 1900)
-        }
+                const doubleArray = JSON.parse(response);
 
+                const newPantryItems = doubleArray.map((item) => ({ name: item[0], quantity: item[1] }));
+                setPantryItems([...pantryItems, ...newPantryItems]);
+                setItemQuantities([...itemQuantities, ...newPantryItems]);
+
+                setText(response);
+                setIsLoading(false);
+            })
+            .catch((error) => {
+                console.error(error);
+                setIsLoading(false);
+            });
+        }
     };
 
     return (
         <Box sx={styles.pantryPage}>
-            <Button
-                component="label"
-                role={undefined}
-                variant="contained"
-                tabIndex={-1}
-                startIcon={<CameraAltIcon/>}
-                sx={{backgroundColor:'#FF6969'}}
-                >
-                Upload Receipt
-                <VisuallyHiddenInput type="file" onChange={fileChange}/>
-            </Button>
-
+            <input type="file" accept="image/*" onChange={fileChange} />
+            <button onClick={parseText} disabled={isLoading}>
+                {isLoading ? 'Extracting...' : 'Extract Text'}
+            </button>
+            {/* {text && <p>Extracted Text: {text}</p>} use this to test the output*/}
 
             <Typography variant="h4" sx={{ ...styles.pageTitle, textAlign: 'left', fontFamily: 'Arial, sans-serif' }}>Pantry</Typography>
             <Box sx={styles.itemContainer}>
-                {Object.entries(pantryItems).map(([name, quantity], index) => (
+                {itemQuantities.map((item, index) => (
                     <Box key={index} sx={styles.itemBox}>
-                        <Typography sx={styles.itemQuantity}>{quantity}</Typography> 
-                        <Typography sx={styles.itemText}>{name}</Typography>
+                        <Typography sx={styles.itemQuantity}>{item.quantity}</Typography> 
+                        <Typography sx={styles.itemText}>{item.name}</Typography>
 
-                        <IconButton onClick={() => dec(name)}>
+                        <IconButton onClick={() => dec(index)}>
                             <RemoveCircle color="black" />
                         </IconButton>
 
-                        <IconButton onClick={() => inc(name)}>
+                        <IconButton onClick={() => inc(index)}>
                             <AddCircle color="black" />
                         </IconButton>
                     </Box>

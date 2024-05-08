@@ -87,7 +87,7 @@ const ProfileScreen = () => {
                     <Grid item xs={6}>
                         <Box sx={{ marginBottom: '10px' }}>
                             <Typography sx={{ ...styles.detailText, textAlign: 'left', margin: '0', padding: '0' }}><strong>Insulin to Carb Ratio</strong></Typography>
-                            <TextField sx={{ ...styles.textField, width: '75px', height: '50%', borderRadius: '6px', margin: '0',  minHeight: 'unset' }} defaultValue="12.7"/>
+                            <TextField sx={{ ...styles.textField, width: '129px', height: '50%', borderRadius: '6px', margin: '0',  minHeight: 'unset' }} defaultValue="12.7"/>
                         </Box>
                     </Grid>
                 </Grid>
