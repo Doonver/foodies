@@ -23,29 +23,26 @@ const PantryScreen = () => {
         width: 1,
     });
     const [pantryItems, setPantryItems] = useAtom(pantryItemsAtom);
-    const [itemQuantities, setItemQuantities] = useState(
-        pantryItems.map((item) => ({ name: item, quantity: 1 }))
-    );
+
     const [image, setImage] = useState(null);
     const [text, setText] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [a, b] = useState('');
 
-    const inc = (index) => {
-        const newQuantities = [...itemQuantities];
-        newQuantities[index].quantity += 1;
-        setItemQuantities(newQuantities);
+    const inc = (name) => {
+        const newPantryItems = {...pantryItems};
+        newPantryItems[name] = (newPantryItems[name] || 0) + 1;
+        setPantryItems(newPantryItems);
     };
 
-    const dec = (index) => {
-        const newQuantities = [...itemQuantities];
-        if (newQuantities[index].quantity > 1) {
-            newQuantities[index].quantity -= 1;
-            setItemQuantities(newQuantities);
+    const dec = (name) => {
+        const newPantryItems = {...pantryItems};
+        if (newPantryItems[name] > 1) {
+            newPantryItems[name] -= 1;
+            setPantryItems(newPantryItems);
         } else {
-            const updatedPantryItems = pantryItems.filter((_, i) => i !== index);
-            setPantryItems(updatedPantryItems);
-            setItemQuantities(newQuantities.filter((_, i) => i !== index));
+            delete newPantryItems[name];
+            setPantryItems(newPantryItems);
         }
     };
 
@@ -58,10 +55,6 @@ const PantryScreen = () => {
             };
             reader.readAsDataURL(file);
         }
-        parseText();
-    };
-
-    const parseText = () => {
         if (image) {
             setIsLoading(true);
             Tesseract.recognize(image, 'eng', {
@@ -86,12 +79,15 @@ const PantryScreen = () => {
                 ).then(response => response.text());
 
                 const doubleArray = JSON.parse(response);
-                console.log(doubleArray)
                 const newPantryItems = doubleArray.map((item) => ({ name: item[0], quantity: item[1] }));
                 console.log(newPantryItems)
-                setPantryItems([...pantryItems, ...newPantryItems]);
-                setItemQuantities([...itemQuantities, ...newPantryItems]);
-
+                const mappedObject = {};
+                newPantryItems.forEach(item => {
+                    mappedObject[item.name] = item.quantity;
+                });
+                const newObject = {...mappedObject, ...pantryItems};
+                console.log(newObject)
+                setPantryItems(newObject);
                 setText(response);
                 setIsLoading(false);
             })
@@ -99,8 +95,8 @@ const PantryScreen = () => {
                 console.error(error);
                 setIsLoading(false);
             });
-        }
-    };
+        };
+    }
 
     return (
         <Box sx={styles.pantryPage}>
