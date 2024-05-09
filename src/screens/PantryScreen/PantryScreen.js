@@ -47,56 +47,52 @@ const PantryScreen = () => {
     };
 
     const fileChange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = (event) => {
-                setImage(event.target.result);
-            };
-            reader.readAsDataURL(file);
-        }
-        if (image) {
-            setIsLoading(true);
-            Tesseract.recognize(image, 'eng', {
-                logger: (m) => console.log(m),
-            })
-            .then(async ({ data: { text } }) => {
-                // import fetch from 'node-fetch'; // for node.js
+    const file = e.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            setImage(event.target.result); // Set image here directly
 
-                const response = await fetch(
-                    'https://noggin.rea.gent/musical-booby-4876',
-                    {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: 'Bearer rg_v1_rv33ypj2lml3hqyow996vats5rot91v61q89_ngk',
-                    },
-                    body: JSON.stringify({
-                        // fill variables here.
-                        "parsed-text": text,
-                    }),
-                    }
-                ).then(response => response.text());
-
-                const doubleArray = JSON.parse(response);
-                const newPantryItems = doubleArray.map((item) => ({ name: item[0], quantity: item[1] }));
-                console.log(newPantryItems)
-                const mappedObject = {};
-                newPantryItems.forEach(item => {
-                    mappedObject[item.name] = item.quantity;
+            // Move the code that depends on setImage into this callback
+                setIsLoading(true);
+                Tesseract.recognize(event.target.result, 'eng', )
+                .then(async ({ data: { text } }) => {
+                    const response = await fetch(
+                        'https://noggin.rea.gent/musical-booby-4876',
+                        {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                Authorization: 'Bearer rg_v1_rv33ypj2lml3hqyow996vats5rot91v61q89_ngk',
+                            },
+                            body: JSON.stringify({
+                                "parsed-text": text,
+                            }),
+                        }
+                    ).then(response => response.text());
+                    const doubleArray = JSON.parse(response);
+                    const newPantryItems = doubleArray.map((item) => ({ name: item[0], quantity: item[1] }));
+                    console.log(newPantryItems)
+                    const mappedObject = {};
+                    newPantryItems.forEach(item => {
+                        mappedObject[item.name] = item.quantity;
+                    });
+                    const newObject = {...mappedObject, ...pantryItems};
+                    console.log(newObject)
+                    setPantryItems(newObject);
+                    setText(response);
+                    setIsLoading(false);
+                })
+                .catch((error) => {
+                    console.error(error);
+                    setIsLoading(false);
                 });
-                const newObject = {...mappedObject, ...pantryItems};
-                console.log(newObject)
-                setPantryItems(newObject);
-                setText(response);
-                setIsLoading(false);
-            })
-            .catch((error) => {
-                console.error(error);
-                setIsLoading(false);
-            });
         };
+        reader.readAsDataURL(file);
     }
+};
+
+
 
     return (
         <Box sx={styles.pantryPage}>
